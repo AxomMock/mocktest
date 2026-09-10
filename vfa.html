@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VFA Mock Tests series - Assam Exam Portal</title>
+    <title>VFA Mock Tests - Assam Exam Portal</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
         body { background: #f4f7f6; color: #333; }
@@ -17,22 +17,32 @@
         .btn-buy { background: #28a745; color: white; border: none; padding: 0.7rem 1.2rem; font-weight: bold; border-radius: 5px; cursor: pointer; text-decoration: none; display: inline-block; }
         .btn-buy:hover { background: #218838; }
         .price-tag { font-size: 1.2rem; font-weight: bold; color: #d9534f; }
+
+        /* Payment Modal Style */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; padding: 15px; }
+        .modal-box { background: white; padding: 25px; border-radius: 10px; max-width: 450px; width: 100%; text-align: center; position: relative; }
+        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 1.5rem; cursor: pointer; color: #aaa; }
+        .payment-qr { width: 180px; height: 180px; background: #eee; margin: 15px auto; display: flex; align-items: center; justify-content: center; border: 2px dashed #003366; }
+        .input-group { margin: 10px 0; text-align: left; }
+        .input-group label { display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 3px; }
+        .input-group input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>VFA Test Series</h1>
-        <p>Constable & AB/UB Mock Tests</p>
+        <p>Assam Direct Recruitment Examination Mock Tests</p>
     </header>
 
     <div class="container">
         <a href="index.html" class="back-link">⬅ Back to Home</a>
 
+        <!-- TEST ITEM 1 -->
         <div class="test-card">
             <div class="test-info">
                 <span class="badge-paid">PREMIUM TEST</span>
-                <h3 style="margin-top: 5px;">Assam Police Constable Full Mock Test - 01</h3>
+                <h3 style="margin-top: 5px;">ADRE 3.0 Full Length Mock Test - 01</h3>
                 <div class="test-meta">
                     <span>📝 100 Questions</span>
                     <span>🎯 100 Marks</span>
@@ -40,11 +50,56 @@
                 </div>
             </div>
             <div style="text-align: right;">
-                <div class="price-tag">₹39</div>
-                <a href="#" class="btn-buy" onclick="alert('Payment integration coming soon!')">BUY / UNLOCK</a>
+                <div class="price-tag">₹49</div>
+                <button class="btn-buy" onclick="openPayment('ADRE 3.0 Test - 01', '49')">BUY / UNLOCK</button>
             </div>
         </div>
     </div>
+
+    <!-- PAYMENT MODAL -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-box">
+            <span class="close-btn" onclick="closePayment()">&times;</span>
+            <h3 style="color: #003366;" id="modalTestTitle">Unlock Mock Test</h3>
+            <p style="color: #666; margin-top: 5px;">Amount: <b style="color: #28a745;" id="modalPrice">₹49</b></p>
+            
+            <div class="payment-qr">
+                <p style="font-size: 0.85rem; color: #777;">[ Scan UPI QR Code ]<br><b>your-upi-id@upi</b></p>
+            </div>
+
+            <p style="font-size: 0.8rem; color: #555;">Pay via GPay / PhonePe / Paytm to the UPI ID above and enter Transaction Details below:</p>
+
+            <form style="margin-top: 15px;" onsubmit="handlePaymentSubmit(event)">
+                <div class="input-group">
+                    <label>Phone Number / WhatsApp Number</label>
+                    <input type="tel" required placeholder="Enter 10-digit number">
+                </div>
+                <div class="input-group">
+                    <label>Transaction ID / UTR Number</label>
+                    <input type="text" required placeholder="Enter 12-digit UTR">
+                </div>
+                <button type="submit" class="btn-buy" style="width: 100%; margin-top: 10px;">SUBMIT & UNLOCK TEST</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openPayment(title, price) {
+            document.getElementById('modalTestTitle').innerText = title;
+            document.getElementById('modalPrice').innerText = '₹' + price;
+            document.getElementById('paymentModal').style.display = 'flex';
+        }
+
+        function closePayment() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        function handlePaymentSubmit(e) {
+            e.preventDefault();
+            alert('Payment Details Received! Verification team will activate your test within 10-15 minutes.');
+            closePayment();
+        }
+    </script>
 
 </body>
 </html>
