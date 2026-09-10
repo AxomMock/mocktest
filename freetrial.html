@@ -7,52 +7,484 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
         body { background: #f4f7f6; color: #333; padding: 15px; }
-        .container { max-width: 800px; margin: auto; }
+        .container { max-width: 850px; margin: auto; }
         .header { background: #003366; color: white; padding: 15px; text-align: center; border-radius: 5px; margin-bottom: 15px; }
-        .timer-box { font-size: 1.2rem; font-weight: bold; color: #d9534f; background: #fff; padding: 10px; border-radius: 5px; text-align: center; margin-bottom: 20px; border: 1px solid #ddd; }
+        .timer-box { font-size: 1.2rem; font-weight: bold; color: #d9534f; background: #fff; padding: 12px; border-radius: 5px; text-align: center; margin-bottom: 20px; border: 1px solid #ddd; position: sticky; top: 10px; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .q-card { background: white; padding: 15px; border-radius: 5px; margin-bottom: 15px; border-left: 4px solid #003366; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .q-text { font-weight: bold; margin-bottom: 10px; }
-        .option-label { display: block; padding: 8px 12px; margin: 5px 0; background: #f8f9fa; border: 1px solid #ddd; border-radius: 4px; cursor: pointer; }
+        .q-text { font-weight: bold; margin-bottom: 10px; line-height: 1.4; }
+        .option-label { display: block; padding: 10px 12px; margin: 6px 0; background: #f8f9fa; border: 1px solid #ddd; border-radius: 4px; cursor: pointer; transition: 0.2s; }
         .option-label:hover { background: #e9ecef; }
-        .btn-submit { background: #28a745; color: white; border: none; padding: 12px 25px; font-size: 1rem; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 15px; }
+        .btn-submit { background: #28a745; color: white; border: none; padding: 15px 25px; font-size: 1.1rem; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 15px; margin-bottom: 30px; }
         .btn-submit:hover { background: #218838; }
         
         /* Result Box Style */
-        .result-box { display: none; background: white; padding: 20px; border-radius: 8px; border-top: 5px solid #28a745; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-top: 20px; }
+        .result-box { display: none; background: white; padding: 25px; border-radius: 8px; border-top: 5px solid #28a745; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-top: 20px; }
         .result-title { text-align: center; color: #003366; margin-bottom: 15px; }
         .score-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
         .score-table td { padding: 10px; border-bottom: 1px solid #ddd; }
         .score-table td:nth-child(2) { font-weight: bold; text-align: right; }
-        .btn-home { display: block; text-align: center; background: #0056b3; color: white; text-decoration: none; padding: 10px; border-radius: 5px; margin-top: 20px; font-weight: bold; }
+        .btn-home { display: block; text-align: center; background: #0056b3; color: white; text-decoration: none; padding: 12px; border-radius: 5px; margin-top: 20px; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="header">
-            <h2>FREE TRIAL MOCK TEST</h2>
-            <p>Assam Govt Competitive Exams</p>
+            <h2>FREE TRIAL MOCK TEST (50 QUESTIONS)</h2>
+            <p>Assam Govt Competitive Exams Special</p>
         </div>
 
         <div class="timer-box" id="timerContainer">⏱️ Time Remaining: <span id="timer">60:00</span></div>
 
         <form id="quizForm">
-            <!-- Question 1 -->
+            <!-- Q1 -->
             <div class="q-card">
-                <div class="q-text">Q1. অসমৰ প্ৰথম মুখ্যমন্ত্ৰী কোন আছিল?<br><small>Who was the first Chief Minister of Assam?</small></div>
-                <label class="option-label"><input type="radio" name="q1" value="A"> A) Gopinath Bordoloi</label>
-                <label class="option-label"><input type="radio" name="q1" value="B"> B) Bishnuram Medhi</label>
-                <label class="option-label"><input type="radio" name="q1" value="C"> C) Bimala Prasad Chaliha</label>
-                <label class="option-label"><input type="radio" name="q1" value="D"> D) Tarun Ram Phukan</label>
+                <div class="q-text">Q1. আহোম ৰাজ্যৰ প্ৰথম ৰাজধানী কোনখন আছিল? / Which was the first capital of the Ahom Kingdom?</div>
+                <label class="option-label"><input type="radio" name="q1" value="A"> A) গড়গাঁও / Garhgaon</label>
+                <label class="option-label"><input type="radio" name="q1" value="B"> B) চৰাইদেউ / Charaideo</label>
+                <label class="option-label"><input type="radio" name="q1" value="C"> C) ৰংপুৰ / Rangpur</label>
+                <label class="option-label"><input type="radio" name="q1" value="D"> D) যোৰহাট / Jorhat</label>
             </div>
 
-            <!-- Question 2 -->
+            <!-- Q2 -->
             <div class="q-card">
-                <div class="q-text">Q2. কাজিৰঙা ৰাষ্ট্ৰীয় উদ্যান কিহৰ বাবে প্ৰসিদ্ধ?<br><small>Kaziranga National Park is famous for?</small></div>
-                <label class="option-label"><input type="radio" name="q2" value="A"> A) Tiger</label>
-                <label class="option-label"><input type="radio" name="q2" value="B"> B) One-horned Rhino</label>
-                <label class="option-label"><input type="radio" name="q2" value="C"> C) Elephant</label>
-                <label class="option-label"><input type="radio" name="q2" value="D"> D) Wild Buffalo</label>
+                <div class="q-text">Q2. ‘হেমকোষ’ অভিধানখনৰ ৰচয়িতা কোন? / Who compiled the Assamese dictionary ‘Hemkosh’?</div>
+                <label class="option-label"><input type="radio" name="q2" value="A"> A) মাইলছ ব্ৰনছন / Miles Bronson</label>
+                <label class="option-label"><input type="radio" name="q2" value="B"> B) হেমচন্দ্ৰ বৰুৱা / Hemchandra Barua</label>
+                <label class="option-label"><input type="radio" name="q2" value="C"> C) লক্ষ্মীনাথ বেজবৰুৱা / Lakshminath Bezbaroa</label>
+                <label class="option-label"><input type="radio" name="q2" value="D"> D) চন্দ্ৰকুমাৰ আগৰৱালা / Chandrakumar Agarwala</label>
+            </div>
+
+            <!-- Q3 -->
+            <div class="q-card">
+                <div class="q-text">Q3. অসমৰ সৰ্বোচ্চ শৃংগ কোনটো? / Which is the highest peak in Assam?</div>
+                <label class="option-label"><input type="radio" name="q3" value="A"> A) পাটকাই / Patkai</label>
+                <label class="option-label"><input type="radio" name="q3" value="B"> B) সিংহাসন / Singhason</label>
+                <label class="option-label"><input type="radio" name="q3" value="C"> C) থুমজাং / Thumjang</label>
+                <label class="option-label"><input type="radio" name="q3" value="D"> D) হেমপেওপেট / Hempeupet</label>
+            </div>
+
+            <!-- Q4 -->
+            <div class="q-card">
+                <div class="q-text">Q4. ভাৰতীয় সংবিধানৰ কোনটো অনুচ্ছেদে অস্পৃশ্যতা বিলোপ কৰিছে? / Which Article of the Indian Constitution abolishes untouchability?</div>
+                <label class="option-label"><input type="radio" name="q4" value="A"> A) Article 14</label>
+                <label class="option-label"><input type="radio" name="q4" value="B"> B) Article 15</label>
+                <label class="option-label"><input type="radio" name="q4" value="C"> C) Article 17</label>
+                <label class="option-label"><input type="radio" name="q4" value="D"> D) Article 19</label>
+            </div>
+
+            <!-- Q5 -->
+            <div class="q-card">
+                <div class="q-text">Q5. ব্ৰহ্মপুত্ৰ নদীক তিব্বতত কি নামেৰে জনা যায়? / By what name is the Brahmaputra known in Tibet?</div>
+                <label class="option-label"><input type="radio" name="q5" value="A"> A) পদ্মা / Padma</label>
+                <label class="option-label"><input type="radio" name="q5" value="B"> B) যমুনা / Jamuna</label>
+                <label class="option-label"><input type="radio" name="q5" value="C"> C) চাংপো / Tsangpo</label>
+                <label class="option-label"><input type="radio" name="q5" value="D"> D) মেঘনা / Meghna</label>
+            </div>
+
+            <!-- Q6 -->
+            <div class="q-card">
+                <div class="q-text">Q6. ‘বুঢ়ী আইৰ সাধু’ৰ ৰচয়িতা কোন? / Who wrote ‘Burhi Aair Sadhu’?</div>
+                <label class="option-label"><input type="radio" name="q6" value="A"> A) হোমেন বৰগোহাঞি / Homen Borgohain</label>
+                <label class="option-label"><input type="radio" name="q6" value="B"> B) লক্ষ্মীনাথ বেজবৰুৱা / Lakshminath Bezbaroa</label>
+                <label class="option-label"><input type="radio" name="q6" value="C"> C) ৰজনীকান্ত বৰদলৈ / Rajanikanta Bordoloi</label>
+                <label class="option-label"><input type="radio" name="q6" value="D"> D) বীৰেন্দ্ৰ কুমাৰ ভট্টাচাৰ্য / Birendra Kumar Bhattacharya</label>
+            </div>
+
+            <!-- Q7 -->
+            <div class="q-card">
+                <div class="q-text">Q7. অসমৰ কোনখন ৰাষ্ট্ৰীয় উদ্যান এশিঙীয়া গঁড়ৰ বাবে বিশ্ববিখ্যাত? / Which National Park of Assam is world-famous for the one-horned rhinoceros?</div>
+                <label class="option-label"><input type="radio" name="q7" value="A"> A) ডিব্ৰু-ছৈখোৱা / Dibru-Saikhowa</label>
+                <label class="option-label"><input type="radio" name="q7" value="B"> B) ওৰাং / Orang</label>
+                <label class="option-label"><input type="radio" name="q7" value="C"> C) কাজিৰঙা / Kaziranga</label>
+                <label class="option-label"><input type="radio" name="q7" value="D"> D) ৰাইমনা / Raimona</label>
+            </div>
+
+            <!-- Q8 -->
+            <div class="q-card">
+                <div class="q-text">Q8. ভাৰতৰ প্ৰথম উপ-ৰাষ্ট্ৰপতি কোন আছিল? / Who was the first Vice-President of India?</div>
+                <label class="option-label"><input type="radio" name="q8" value="A"> A) ড° ৰাজেন্দ্ৰ প্ৰসাদ / Dr Rajendra Prasad</label>
+                <label class="option-label"><input type="radio" name="q8" value="B"> B) ড° এছ. ৰাধাকৃষ্ণন / Dr S. Radhakrishnan</label>
+                <label class="option-label"><input type="radio" name="q8" value="C"> C) জাকিৰ হুছেইন / Zakir Husain</label>
+                <label class="option-label"><input type="radio" name="q8" value="D"> D) ভি. ভি. গিৰি / V. V. Giri</label>
+            </div>
+
+            <!-- Q9 -->
+            <div class="q-card">
+                <div class="q-text">Q9. কোষৰ ‘Powerhouse’ বুলি কাক কোৱা হয়? / Which organelle is called the powerhouse of the cell?</div>
+                <label class="option-label"><input type="radio" name="q9" value="A"> A) Ribosome</label>
+                <label class="option-label"><input type="radio" name="q9" value="B"> B) Nucleus</label>
+                <label class="option-label"><input type="radio" name="q9" value="C"> C) Mitochondria</label>
+                <label class="option-label"><input type="radio" name="q9" value="D"> D) Lysosome</label>
+            </div>
+
+            <!-- Q10 -->
+            <div class="q-card">
+                <div class="q-text">Q10. 1857 চনৰ বিদ্ৰোহৰ সময়ত অসমৰ সৈতে জড়িত মুখ্য নেতা কোন আছিল? / Which prominent leader was associated with the 1857 revolt in Assam?</div>
+                <label class="option-label"><input type="radio" name="q10" value="A"> A) মণিৰাম দেৱান / Maniram Dewan</label>
+                <label class="option-label"><input type="radio" name="q10" value="B"> B) কুশল কোঁৱৰ / Kushal Konwar</label>
+                <label class="option-label"><input type="radio" name="q10" value="C"> C) কনকলতা বৰুৱা / Kanaklata Barua</label>
+                <label class="option-label"><input type="radio" name="q10" value="D"> D) পিয়লি ফুকন / Piyali Phukan</label>
+            </div>
+
+            <!-- Q11 -->
+            <div class="q-card">
+                <div class="q-text">Q11. 25% of a number is 45. What is the number? / এটা সংখ্যাৰ ২৫% = ৪৫। সংখ্যাটো কিমান?</div>
+                <label class="option-label"><input type="radio" name="q11" value="A"> A) 160</label>
+                <label class="option-label"><input type="radio" name="q11" value="B"> B) 170</label>
+                <label class="option-label"><input type="radio" name="q11" value="C"> C) 180</label>
+                <label class="option-label"><input type="radio" name="q11" value="D"> D) 200</label>
+            </div>
+
+            <!-- Q12 -->
+            <div class="q-card">
+                <div class="q-text">Q12. যদি A = 1, B = 2, ... Z = 26 হয়, তেন্তে ASSAM-ৰ মান কিমান? / If A=1, B=2,...Z=26, what is the value of ASSAM?</div>
+                <label class="option-label"><input type="radio" name="q12" value="A"> A) 51</label>
+                <label class="option-label"><input type="radio" name="q12" value="B"> B) 52</label>
+                <label class="option-label"><input type="radio" name="q12" value="C"> C) 53</label>
+                <label class="option-label"><input type="radio" name="q12" value="D"> D) 54</label>
+            </div>
+
+            <!-- Q13 -->
+            <div class="q-card">
+                <div class="q-text">Q13. অসমৰ প্ৰথম অসমীয়া সাময়িক আলোচনী কোনখন? / Which was the first Assamese periodical?</div>
+                <label class="option-label"><input type="radio" name="q13" value="A"> A) জোনাকী / Jonaki</label>
+                <label class="option-label"><input type="radio" name="q13" value="B"> B) অৰুণোদই / Orunodoi</label>
+                <label class="option-label"><input type="radio" name="q13" value="C"> C) বাঁহী / Bahi</label>
+                <label class="option-label"><input type="radio" name="q13" value="D"> D) ৰামধেনু / Ramdhenu</label>
+            </div>
+
+            <!-- Q14 -->
+            <div class="q-card">
+                <div class="q-text">Q14. ভাৰতীয় সংবিধানৰ কোনটো অনুচ্ছেদে সাংবিধানিক প্ৰতিকাৰৰ অধিকাৰ প্ৰদান কৰে? / Which Article provides the Right to Constitutional Remedies?</div>
+                <label class="option-label"><input type="radio" name="q14" value="A"> A) Article 21</label>
+                <label class="option-label"><input type="radio" name="q14" value="B"> B) Article 32</label>
+                <label class="option-label"><input type="radio" name="q14" value="C"> C) Article 44</label>
+                <label class="option-label"><input type="radio" name="q14" value="D"> D) Article 51A</label>
+            </div>
+
+            <!-- Q15 -->
+            <div class="q-card">
+                <div class="q-text">Q15. ভাৰতৰ বৃহত্তম মালভূমি কোনটো? / Which is the largest plateau in India?</div>
+                <label class="option-label"><input type="radio" name="q15" value="A"> A) Chota Nagpur Plateau</label>
+                <label class="option-label"><input type="radio" name="q15" value="B"> B) Meghalaya Plateau</label>
+                <label class="option-label"><input type="radio" name="q15" value="C"> C) Deccan Plateau</label>
+                <label class="option-label"><input type="radio" name="q15" value="D"> D) Malwa Plateau</label>
+            </div>
+
+            <!-- Q16 -->
+            <div class="q-card">
+                <div class="q-text">Q16. মানুহৰ দেহত ইনছুলিন কোন অংগই উৎপন্ন কৰে? / Which organ produces insulin in the human body?</div>
+                <label class="option-label"><input type="radio" name="q16" value="A"> A) Liver</label>
+                <label class="option-label"><input type="radio" name="q16" value="B"> B) Pancreas</label>
+                <label class="option-label"><input type="radio" name="q16" value="C"> C) Kidney</label>
+                <label class="option-label"><input type="radio" name="q16" value="D"> D) Spleen</label>
+            </div>
+
+            <!-- Q17 -->
+            <div class="q-card">
+                <div class="q-text">Q17. অসমৰ প্ৰথম জ্ঞানপীঠ বঁটা বিজয়ী কোন? / Who was the first Jnanpith Award winner from Assam?</div>
+                <label class="option-label"><input type="radio" name="q17" value="A"> A) ইন্দিৰা গোস্বামী / Indira Goswami</label>
+                <label class="option-label"><input type="radio" name="q17" value="B"> B) নীলমণি ফুকন / Nilmani Phookan</label>
+                <label class="option-label"><input type="radio" name="q17" value="C"> C) বীৰেন্দ্ৰ কুমাৰ ভট্টাচাৰ্য / Birendra Kumar Bhattacharya</label>
+                <label class="option-label"><input type="radio" name="q17" value="D"> D) মামণি ৰয়ছম গোস্বামী / Mamoni Raisom Goswami</label>
+            </div>
+
+            <!-- Q18 -->
+            <div class="q-card">
+                <div class="q-text">Q18. 12, 18 আৰু 30-ৰ LCM কিমান? / What is the LCM of 12, 18 and 30?</div>
+                <label class="option-label"><input type="radio" name="q18" value="A"> A) 90</label>
+                <label class="option-label"><input type="radio" name="q18" value="B"> B) 120</label>
+                <label class="option-label"><input type="radio" name="q18" value="C"> C) 180</label>
+                <label class="option-label"><input type="radio" name="q18" value="D"> D) 360</label>
+            </div>
+
+            <!-- Q19 -->
+            <div class="q-card">
+                <div class="q-text">Q19. ‘অসম কেশৰী’ বুলি কাক জনা যায়? / Who is known as ‘Assam Kesari’?</div>
+                <label class="option-label"><input type="radio" name="q19" value="A"> A) গোপীনাথ বৰদলৈ / Gopinath Bordoloi</label>
+                <label class="option-label"><input type="radio" name="q19" value="B"> B) অম্বিকাগিৰি ৰায়চৌধুৰী / Ambikagiri Raichoudhury</label>
+                <label class="option-label"><input type="radio" name="q19" value="C"> C) বিষ্ণুৰাম মেধি / Bishnuram Medhi</label>
+                <label class="option-label"><input type="radio" name="q19" value="D"> D) তৰুণ ৰাম ফুকন / Tarun Ram Phukan</label>
+            </div>
+
+            <!-- Q20 -->
+            <div class="q-card">
+                <div class="q-text">Q20. ৰাজ্যসভাৰ সৰ্বাধিক সদস্য সংখ্যা সংবিধান অনুসৰি কিমান? / What is the maximum strength of the Rajya Sabha under the Constitution?</div>
+                <label class="option-label"><input type="radio" name="q20" value="A"> A) 238</label>
+                <label class="option-label"><input type="radio" name="q20" value="B"> B) 245</label>
+                <label class="option-label"><input type="radio" name="q20" value="C"> C) 250</label>
+                <label class="option-label"><input type="radio" name="q20" value="D"> D) 252</label>
+            </div>
+
+            <!-- Q21 -->
+            <div class="q-card">
+                <div class="q-text">Q21. তলৰ কোনখন নদী পশ্চিমমুখী? / Which of the following rivers flows westward?</div>
+                <label class="option-label"><input type="radio" name="q21" value="A"> A) Godavari</label>
+                <label class="option-label"><input type="radio" name="q21" value="B"> B) Krishna</label>
+                <label class="option-label"><input type="radio" name="q21" value="C"> C) Mahanadi</label>
+                <label class="option-label"><input type="radio" name="q21" value="D"> D) Narmada</label>
+            </div>
+
+            <!-- Q22 -->
+            <div class="q-card">
+                <div class="q-text">Q22. আলোকৰ বেগ সৰ্বাধিক ক’ত? / Where is the speed of light maximum?</div>
+                <label class="option-label"><input type="radio" name="q22" value="A"> A) Water</label>
+                <label class="option-label"><input type="radio" name="q22" value="B"> B) Glass</label>
+                <label class="option-label"><input type="radio" name="q22" value="C"> C) Vacuum</label>
+                <label class="option-label"><input type="radio" name="q22" value="D"> D) Diamond</label>
+            </div>
+
+            <!-- Q23 -->
+            <div class="q-card">
+                <div class="q-text">Q23. 15 জন মানুহে এটা কাম 20 দিনত কৰে। একে হাৰত 10 জনে কামটো কিমান দিনত কৰিব? / 15 men complete a work in 20 days. In how many days will 10 men complete it?</div>
+                <label class="option-label"><input type="radio" name="q23" value="A"> A) 25 days</label>
+                <label class="option-label"><input type="radio" name="q23" value="B"> B) 30 days</label>
+                <label class="option-label"><input type="radio" name="q23" value="C"> C) 35 days</label>
+                <label class="option-label"><input type="radio" name="q23" value="D"> D) 40 days</label>
+            </div>
+
+            <!-- Q24 -->
+            <div class="q-card">
+                <div class="q-text">Q24. ধাৰাটো সম্পূৰ্ণ কৰক / Complete the series: 2, 6, 12, 20, 30, ?</div>
+                <label class="option-label"><input type="radio" name="q24" value="A"> A) 36</label>
+                <label class="option-label"><input type="radio" name="q24" value="B"> B) 40</label>
+                <label class="option-label"><input type="radio" name="q24" value="C"> C) 42</label>
+                <label class="option-label"><input type="radio" name="q24" value="D"> D) 44</label>
+            </div>
+
+            <!-- Q25 -->
+            <div class="q-card">
+                <div class="q-text">Q25. ‘মোৰ দেশ’ কবিতাৰ কবি কোন? / Who wrote the Assamese poem ‘Mor Desh’?</div>
+                <label class="option-label"><input type="radio" name="q25" value="A"> A) হীৰেন ভট্টাচাৰ্য / Hiren Bhattacharyya</label>
+                <label class="option-label"><input type="radio" name="q25" value="B"> B) নলিনীবালা দেৱী / Nalinibala Devi</label>
+                <label class="option-label"><input type="radio" name="q25" value="C"> C) অম্বিকাগিৰি ৰায়চৌধুৰী / Ambikagiri Raichoudhury</label>
+                <label class="option-label"><input type="radio" name="q25" value="D"> D) নৱকান্ত বৰুৱা / Navakanta Barua</label>
+            </div>
+
+            <!-- Q26 -->
+            <div class="q-card">
+                <div class="q-text">Q26. ভাৰতীয় সংবিধানৰ মৌলিক কৰ্তব্যসমূহ কোনটো সংশোধনীৰ দ্বাৰা সংযোজন কৰা হৈছিল? / Fundamental Duties were added by which Constitutional Amendment?</div>
+                <label class="option-label"><input type="radio" name="q26" value="A"> A) 24th</label>
+                <label class="option-label"><input type="radio" name="q26" value="B"> B) 42nd Amendment</label>
+                <label class="option-label"><input type="radio" name="q26" value="C"> C) 44th</label>
+                <label class="option-label"><input type="radio" name="q26" value="D"> D) 52nd</label>
+            </div>
+
+            <!-- Q27 -->
+            <div class="q-card">
+                <div class="q-text">Q27. কোনটো ভিটামিনৰ অভাৱত ৰিকেটছ হয়? / Deficiency of which vitamin causes rickets?</div>
+                <label class="option-label"><input type="radio" name="q27" value="A"> A) Vitamin A</label>
+                <label class="option-label"><input type="radio" name="q27" value="B"> B) Vitamin B12</label>
+                <label class="option-label"><input type="radio" name="q27" value="C"> C) Vitamin C</label>
+                <label class="option-label"><input type="radio" name="q27" value="D"> D) Vitamin D</label>
+            </div>
+
+            <!-- Q28 -->
+            <div class="q-card">
+                <div class="q-text">Q28. অসমৰ চাহ উদ্যোগৰ আৰম্ভণিৰ সৈতে কোনজন স্কটিছ ব্যক্তিৰ নাম বিশেষভাৱে জড়িত? / Which Scotsman is prominently associated with Assam's tea industry?</div>
+                <label class="option-label"><input type="radio" name="q28" value="A"> A) Robert Bruce</label>
+                <label class="option-label"><input type="radio" name="q28" value="B"> B) David Scott</label>
+                <label class="option-label"><input type="radio" name="q28" value="C"> C) Charles Alexander Bruce</label>
+                <label class="option-label"><input type="radio" name="q28" value="D"> D) Francis Jenkins</label>
+            </div>
+
+            <!-- Q29 -->
+            <div class="q-card">
+                <div class="q-text">Q29. 800 টকাৰ বস্তু এটাত 15% discount দিলে selling price কিমান? / An article marked at ₹800 is sold at 15% discount. Find SP.</div>
+                <label class="option-label"><input type="radio" name="q29" value="A"> A) ₹660</label>
+                <label class="option-label"><input type="radio" name="q29" value="B"> B) ₹670</label>
+                <label class="option-label"><input type="radio" name="q29" value="C"> C) ₹680</label>
+                <label class="option-label"><input type="radio" name="q29" value="D"> D) ₹690</label>
+            </div>
+
+            <!-- Q30 -->
+            <div class="q-card">
+                <div class="q-text">Q30. A is B's brother. C is B's mother. D is C's father. A is D's...? / A, B-ৰ ভাই। C, B-ৰ মাক। D, C-ৰ দেউতাক। A, D-ৰ কি হয়?</div>
+                <label class="option-label"><input type="radio" name="q30" value="A"> A) Son / পুত্ৰ</label>
+                <label class="option-label"><input type="radio" name="q30" value="B"> B) Grandson / নাতি</label>
+                <label class="option-label"><input type="radio" name="q30" value="C"> C) Nephew / ভাগিন</label>
+                <label class="option-label"><input type="radio" name="q30" value="D"> D) Brother / ভাই</label>
+            </div>
+
+            <!-- Q31 -->
+            <div class="q-card">
+                <div class="q-text">Q31. পৃথিৱীৰ বৃহত্তম মহাসাগৰ কোনটো? / Which is the largest ocean in the world?</div>
+                <label class="option-label"><input type="radio" name="q31" value="A"> A) Atlantic</label>
+                <label class="option-label"><input type="radio" name="q31" value="B"> B) Indian</label>
+                <label class="option-label"><input type="radio" name="q31" value="C"> C) Arctic</label>
+                <label class="option-label"><input type="radio" name="q31" value="D"> D) Pacific Ocean</label>
+            </div>
+
+            <!-- Q32 -->
+            <div class="q-card">
+                <div class="q-text">Q32. অসমৰ ‘মানাহ’ ৰাষ্ট্ৰীয় উদ্যান কোনখন নদীৰ নামৰ পৰা নামকৰণ কৰা হৈছে? / Manas National Park is named after which river?</div>
+                <label class="option-label"><input type="radio" name="q32" value="A"> A) Manas</label>
+                <label class="option-label"><input type="radio" name="q32" value="B"> B) Jia Bharali</label>
+                <label class="option-label"><input type="radio" name="q32" value="C"> C) Dhansiri</label>
+                <label class="option-label"><input type="radio" name="q32" value="D"> D) Subansiri</label>
+            </div>
+
+            <!-- Q33 -->
+            <div class="q-card">
+                <div class="q-text">Q33. ভাৰতৰ CAG-ক কোনে নিযুক্তি দিয়ে? / Who appoints the Comptroller and Auditor General of India?</div>
+                <label class="option-label"><input type="radio" name="q33" value="A"> A) Prime Minister</label>
+                <label class="option-label"><input type="radio" name="q33" value="B"> B) Parliament</label>
+                <label class="option-label"><input type="radio" name="q33" value="C"> C) President</label>
+                <label class="option-label"><input type="radio" name="q33" value="D"> D) Chief Justice of India</label>
+            </div>
+
+            <!-- Q34 -->
+            <div class="q-card">
+                <div class="q-text">Q34. পানীৰ ৰাসায়নিক সংকেত কি? / What is the chemical formula of water?</div>
+                <label class="option-label"><input type="radio" name="q34" value="A"> A) HO₂</label>
+                <label class="option-label"><input type="radio" name="q34" value="B"> B) H₂O</label>
+                <label class="option-label"><input type="radio" name="q34" value="C"> C) H₂O₂</label>
+                <label class="option-label"><input type="radio" name="q34" value="D"> D) OH₂</label>
+            </div>
+
+            <!-- Q35 -->
+            <div class="q-card">
+                <div class="q-text">Q35. 3 : 5 অনুপাতত থকা দুটা সংখ্যাৰ যোগফল 96। সৰু সংখ্যাটো কিমান? / Two numbers are in ratio 3:5 and their sum is 96. Find smaller number.</div>
+                <label class="option-label"><input type="radio" name="q35" value="A"> A) 32</label>
+                <label class="option-label"><input type="radio" name="q35" value="B"> B) 36</label>
+                <label class="option-label"><input type="radio" name="q35" value="C"> C) 40</label>
+                <label class="option-label"><input type="radio" name="q35" value="D"> D) 48</label>
+            </div>
+
+            <!-- Q36 -->
+            <div class="q-card">
+                <div class="q-text">Q36. Odd one out বাছক / Choose the odd one out:</div>
+                <label class="option-label"><input type="radio" name="q36" value="A"> A) 27</label>
+                <label class="option-label"><input type="radio" name="q36" value="B"> B) 64</label>
+                <label class="option-label"><input type="radio" name="q36" value="C"> C) 125</label>
+                <label class="option-label"><input type="radio" name="q36" value="D"> D) 225</label>
+            </div>
+
+            <!-- Q37 -->
+            <div class="q-card">
+                <div class="q-text">Q37. ‘কীৰ্তন-ঘোষা’ কোনে ৰচনা কৰিছিল? / Who composed ‘Kirtan Ghoxa’?</div>
+                <label class="option-label"><input type="radio" name="q37" value="A"> A) মাধৱদেৱ / Madhavdeva</label>
+                <label class="option-label"><input type="radio" name="q37" value="B"> B) শ্ৰীমন্ত শংকৰদেৱ / Srimanta Sankardeva</label>
+                <label class="option-label"><input type="radio" name="q37" value="C"> C) অনন্ত কন্দলী / Ananta Kandali</label>
+                <label class="option-label"><input type="radio" name="q37" value="D"> D) ৰাম সৰস্বতী / Rama Saraswati</label>
+            </div>
+
+            <!-- Q38 -->
+            <div class="q-card">
+                <div class="q-text">Q38. পঞ্চায়তী ৰাজ ব্যৱস্থাক সাংবিধানিক মৰ্যাদা কোনটো সংশোধনীয়ে প্ৰদান কৰে? / Which Amendment gave constitutional status to Panchayati Raj?</div>
+                <label class="option-label"><input type="radio" name="q38" value="A"> A) 42nd</label>
+                <label class="option-label"><input type="radio" name="q38" value="B"> B) 44th</label>
+                <label class="option-label"><input type="radio" name="q38" value="C"> C) 73rd Amendment</label>
+                <label class="option-label"><input type="radio" name="q38" value="D"> D) 74th</label>
+            </div>
+
+            <!-- Q39 -->
+            <div class="q-card">
+                <div class="q-text">Q39. ‘Red Planet’ বুলি কোনটো গ্ৰহক জনা যায়? / Which planet is known as the Red Planet?</div>
+                <label class="option-label"><input type="radio" name="q39" value="A"> A) Venus</label>
+                <label class="option-label"><input type="radio" name="q39" value="B"> B) Mars</label>
+                <label class="option-label"><input type="radio" name="q39" value="C"> C) Jupiter</label>
+                <label class="option-label"><input type="radio" name="q39" value="D"> D) Mercury</label>
+            </div>
+
+            <!-- Q40 -->
+            <div class="q-card">
+                <div class="q-text">Q40. ভাৰতীয় জাতীয় কংগ্ৰেছ কেতিয়া প্ৰতিষ্ঠা হৈছিল? / When was the Indian National Congress founded?</div>
+                <label class="option-label"><input type="radio" name="q40" value="A"> A) 1885</label>
+                <label class="option-label"><input type="radio" name="q40" value="B"> B) 1889</label>
+                <label class="option-label"><input type="radio" name="q40" value="C"> C) 1905</label>
+                <label class="option-label"><input type="radio" name="q40" value="D"> D) 1906</label>
+            </div>
+
+            <!-- Q41 -->
+            <div class="q-card">
+                <div class="q-text">Q41. এটা বস্তু ₹500-ত কিনি ₹575-ত বিক্ৰী কৰিলে লাভৰ শতাংশ কিমান? / An article bought for ₹500 is sold for ₹575. Find profit %?</div>
+                <label class="option-label"><input type="radio" name="q41" value="A"> A) 10%</label>
+                <label class="option-label"><input type="radio" name="q41" value="B"> B) 12%</label>
+                <label class="option-label"><input type="radio" name="q41" value="C"> C) 15%</label>
+                <label class="option-label"><input type="radio" name="q41" value="D"> D) 17.5%</label>
+            </div>
+
+            <!-- Q42 -->
+            <div class="q-card">
+                <div class="q-text">Q42. যদি CAT = 24 হয় (C+A+T), তেন্তে DOG = ? / If CAT = 24, then DOG = ?</div>
+                <label class="option-label"><input type="radio" name="q42" value="A"> A) 24</label>
+                <label class="option-label"><input type="radio" name="q42" value="B"> B) 25</label>
+                <label class="option-label"><input type="radio" name="q42" value="C"> C) 26</label>
+                <label class="option-label"><input type="radio" name="q42" value="D"> D) 27</label>
+            </div>
+
+            <!-- Q43 -->
+            <div class="q-card">
+                <div class="q-text">Q43. অসমৰ কোনখন জিলা মাজুলীৰ পৰা পৃথক কৰি গঠন কৰা হোৱা নাছিল? / Which district was NOT formed by separating it from Majuli?</div>
+                <label class="option-label"><input type="radio" name="q43" value="A"> A) None — Majuli itself was carved out of Jorhat</label>
+                <label class="option-label"><input type="radio" name="q43" value="B"> B) Sivasagar</label>
+                <label class="option-label"><input type="radio" name="q43" value="C"> C) Dhemaji</label>
+                <label class="option-label"><input type="radio" name="q43" value="D"> D) Lakhimpur</label>
+            </div>
+
+            <!-- Q44 -->
+            <div class="q-card">
+                <div class="q-text">Q44. Money Bill কেৱল ক’ত উত্থাপন কৰিব পাৰি? / A Money Bill can be introduced only in:</div>
+                <label class="option-label"><input type="radio" name="q44" value="A"> A) Rajya Sabha</label>
+                <label class="option-label"><input type="radio" name="q44" value="B"> B) Lok Sabha</label>
+                <label class="option-label"><input type="radio" name="q44" value="C"> C) Either House</label>
+                <label class="option-label"><input type="radio" name="q44" value="D"> D) Joint Sitting</label>
+            </div>
+
+            <!-- Q45 -->
+            <div class="q-card">
+                <div class="q-text">Q45. শব্দই তলৰ কোনটো মাধ্যমৰ মাজেৰে গতি কৰিব নোৱাৰে? / Sound cannot travel through which medium?</div>
+                <label class="option-label"><input type="radio" name="q45" value="A"> A) Solid</label>
+                <label class="option-label"><input type="radio" name="q45" value="B"> B) Liquid</label>
+                <label class="option-label"><input type="radio" name="q45" value="C"> C) Gas</label>
+                <label class="option-label"><input type="radio" name="q45" value="D"> D) Vacuum</label>
+            </div>
+
+            <!-- Q46 -->
+            <div class="q-card">
+                <div class="q-text">Q46. ভাৰতৰ সংবিধান সভাৰ স্থায়ী সভাপতি কোন আছিল? / Who was the permanent President of the Constituent Assembly?</div>
+                <label class="option-label"><input type="radio" name="q46" value="A"> A) B. R. Ambedkar</label>
+                <label class="option-label"><input type="radio" name="q46" value="B"> B) Jawaharlal Nehru</label>
+                <label class="option-label"><input type="radio" name="q46" value="C"> C) Dr Rajendra Prasad</label>
+                <label class="option-label"><input type="radio" name="q46" value="D"> D) Sachchidananda Sinha</label>
+            </div>
+
+            <!-- Q47 -->
+            <div class="q-card">
+                <div class="q-text">Q47. 7² + 8² = ?</div>
+                <label class="option-label"><input type="radio" name="q47" value="A"> A) 103</label>
+                <label class="option-label"><input type="radio" name="q47" value="B"> B) 110</label>
+                <label class="option-label"><input type="radio" name="q47" value="C"> C) 113</label>
+                <label class="option-label"><input type="radio" name="q47" value="D"> D) 121</label>
+            </div>
+
+            <!-- Q48 -->
+            <div class="q-card">
+                <div class="q-text">Q48. ধাৰাটো সম্পূৰ্ণ কৰক / Complete the series: AZ, BY, CX, DW, ?</div>
+                <label class="option-label"><input type="radio" name="q48" value="A"> A) EU</label>
+                <label class="option-label"><input type="radio" name="q48" value="B"> B) EV</label>
+                <label class="option-label"><input type="radio" name="q48" value="C"> C) FU</label>
+                <label class="option-label"><input type="radio" name="q48" value="D"> D) EW</label>
+            </div>
+
+            <!-- Q49 -->
+            <div class="q-card">
+                <div class="q-text">Q49. ভাৰতৰ সৰ্বাধিক দীঘল সম্পূৰ্ণৰূপে ভাৰতৰ ভিতৰত বৈ যোৱা নদী কোনখন? / Which is the longest river flowing entirely within India?</div>
+                <label class="option-label"><input type="radio" name="q49" value="A"> A) Ganga</label>
+                <label class="option-label"><input type="radio" name="q49" value="B"> B) Godavari</label>
+                <label class="option-label"><input type="radio" name="q49" value="C"> C) Krishna</label>
+                <label class="option-label"><input type="radio" name="q49" value="D"> D) Narmada</label>
+            </div>
+
+            <!-- Q50 -->
+            <div class="q-card">
+                <div class="q-text">Q50. অসমৰ প্ৰথম মুখ্যমন্ত্ৰী কোন আছিল? / Who was the first Chief Minister of Assam?</div>
+                <label class="option-label"><input type="radio" name="q50" value="A"> A) Bishnuram Medhi</label>
+                <label class="option-label"><input type="radio" name="q50" value="B"> B) Bimala Prasad Chaliha</label>
+                <label class="option-label"><input type="radio" name="q50" value="C"> C) Gopinath Bordoloi</label>
+                <label class="option-label"><input type="radio" name="q50" value="D"> D) Sarat Chandra Sinha</label>
             </div>
 
             <button type="button" class="btn-submit" onclick="calculateResult()">SUBMIT TEST</button>
@@ -62,13 +494,13 @@
         <div class="result-box" id="resultBox">
             <h2 class="result-title">🎯 TEST RESULT</h2>
             <table class="score-table">
-                <tr><td>Total Questions</td><td>2</td></tr>
+                <tr><td>Total Questions</td><td>50</td></tr>
                 <tr><td>Attempted</td><td id="resAttempted">0</td></tr>
                 <tr><td>Correct Answers (+1 Mark)</td><td id="resCorrect" style="color: green;">0</td></tr>
                 <tr><td>Wrong Answers (-0.25 Mark)</td><td id="resWrong" style="color: red;">0</td></tr>
                 <tr><td>Skipped</td><td id="resSkipped">0</td></tr>
                 <tr><td>Negative Marks</td><td id="resNegMarks" style="color: red;">0.00</td></tr>
-                <tr><td style="font-size: 1.1rem; font-weight: bold;">FINAL SCORE</td><td id="resFinalScore" style="font-size: 1.2rem; font-weight: bold; color: #003366;">0.00 / 2</td></tr>
+                <tr><td style="font-size: 1.1rem; font-weight: bold;">FINAL SCORE</td><td id="resFinalScore" style="font-size: 1.2rem; font-weight: bold; color: #003366;">0.00 / 50</td></tr>
             </table>
 
             <a href="index.html" class="btn-home">GO TO HOMEPAGE</a>
@@ -78,11 +510,19 @@
     <script>
         // Answer Key Object
         const answerKey = {
-            q1: 'A',
-            q2: 'B'
+            q1: 'B', q2: 'B', q3: 'C', q4: 'C', q5: 'C',
+            q6: 'B', q7: 'C', q8: 'B', q9: 'C', q10: 'A',
+            q11: 'C', q12: 'C', q13: 'B', q14: 'B', q15: 'C',
+            q16: 'B', q17: 'C', q18: 'C', q19: 'B', q20: 'C',
+            q21: 'D', q22: 'C', q23: 'B', q24: 'C', q25: 'C',
+            q26: 'B', q27: 'D', q28: 'C', q29: 'C', q30: 'B',
+            q31: 'D', q32: 'A', q33: 'C', q34: 'B', q35: 'B',
+            q36: 'D', q37: 'B', q38: 'C', q39: 'B', q40: 'A',
+            q41: 'C', q42: 'C', q43: 'A', q44: 'B', q45: 'D',
+            q46: 'C', q47: 'C', q48: 'B', q49: 'B', q50: 'C'
         };
 
-        // Timer Logic
+        // Timer Logic (60 Mins)
         let totalTime = 60 * 60;
         const timerElement = document.getElementById('timer');
         
@@ -103,7 +543,7 @@
         function calculateResult() {
             clearInterval(countdown); // Stop timer
             
-            let totalQuestions = 2;
+            let totalQuestions = 50;
             let correct = 0;
             let wrong = 0;
             let attempted = 0;
@@ -138,6 +578,9 @@
             document.getElementById('resSkipped').innerText = skipped;
             document.getElementById('resNegMarks').innerText = `- ${negativeMarks.toFixed(2)}`;
             document.getElementById('resFinalScore').innerText = `${finalScore.toFixed(2)} / ${totalQuestions}`;
+            
+            // Scroll to top
+            window.scrollTo(0,0);
         }
     </script>
 
